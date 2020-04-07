@@ -77,10 +77,21 @@ class Ade20kCocoConfig(Config):
     # coco_ade20k has 4 non-BG classes: ceiling, floor, window, wall
     NUM_CLASSES = 1 + 4
 
-    # TODO: Change image sizing parameters.
-    # IMAGE_MIN_DIM = 500
-    # IMAGE_MAX_DIM = 800
+    MINI_MASK_SHAPE = (96, 96)
 
+    # Maximum number of ground truth instances to use in one image
+    MAX_GT_INSTANCES = 20
+
+    # Max number of final detections
+    DETECTION_MAX_INSTANCES = 20
+
+    LOSS_WEIGHTS = {
+        "rpn_class_loss": 1.,
+        "rpn_bbox_loss": 1.,
+        "mrcnn_class_loss": 1.,
+        "mrcnn_bbox_loss": 1.,
+        "mrcnn_mask_loss": 1.25,  # Increase loss for bad mask
+    }
 
 ############################################################
 #  Dataset
