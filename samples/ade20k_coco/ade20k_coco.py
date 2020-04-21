@@ -68,30 +68,27 @@ class Ade20kCocoConfig(Config):
 
     # We use a GPU with 12GB memory, which can fit two images.
     # Adjust down if you use a smaller GPU.
-    IMAGES_PER_GPU = 2
-
-    # Uncomment to train on 8 GPUs (default is 1)
-    # GPU_COUNT = 8
+    IMAGES_PER_GPU = 1
 
     # Number of classes (including background)
     # coco_ade20k has 4 non-BG classes: ceiling, floor, window, wall
     NUM_CLASSES = 1 + 4
 
-    MINI_MASK_SHAPE = (96, 96)
+    # MINI_MASK_SHAPE = (96, 96)
 
-    # Maximum number of ground truth instances to use in one image
-    MAX_GT_INSTANCES = 20
+    # # Maximum number of ground truth instances to use in one image
+    # MAX_GT_INSTANCES = 20
 
-    # Max number of final detections
-    DETECTION_MAX_INSTANCES = 20
+    # # Max number of final detections
+    # DETECTION_MAX_INSTANCES = 20
 
-    LOSS_WEIGHTS = {
-        "rpn_class_loss": 1.,
-        "rpn_bbox_loss": 1.,
-        "mrcnn_class_loss": 1.,
-        "mrcnn_bbox_loss": 1.,
-        "mrcnn_mask_loss": 1.25,  # Increase loss for bad mask
-    }
+    # LOSS_WEIGHTS = {
+        # "rpn_class_loss": 1.,
+        # "rpn_bbox_loss": 1.,
+        # "mrcnn_class_loss": 1.,
+        # "mrcnn_bbox_loss": 1.25,
+        # "mrcnn_mask_loss": 1.25,  # Increase loss for bad mask
+    # }
 
 ############################################################
 #  Dataset
