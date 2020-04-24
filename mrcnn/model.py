@@ -2158,6 +2158,9 @@ class MaskRCNN():
         optimizer = keras.optimizers.SGD(
             lr=learning_rate, momentum=momentum,
             clipnorm=self.config.GRADIENT_CLIP_NORM)
+
+        logging.info(f"Using optimizer {type(optimizer)}")
+
         # Add Losses
         # First, clear previously set losses to avoid duplication
         self.keras_model._losses = []
@@ -2198,7 +2201,7 @@ class MaskRCNN():
                 * self.config.LOSS_WEIGHTS.get(name, 1.))
             self.keras_model.metrics_tensors.append(loss)
 
-    def set_trainable(self, layer_regex, keras_model=None, indent=0, verbose=1):
+    def set_trainable(self, layer_regex, keras_model=None, indent=0, verbose=0):
         """Sets model layers as trainable if their names match
         the given regular expression.
         """
@@ -2337,8 +2340,8 @@ class MaskRCNN():
 
         # Callbacks
         callbacks = [
-            keras.callbacks.TensorBoard(log_dir=self.log_dir,
-                                        histogram_freq=0, write_graph=True, write_images=False),
+            keras.callbacks.TensorBoard(log_dir=self.log_dir, histogram_freq=0,
+                                            write_graph=True, write_images=False),
             keras.callbacks.ModelCheckpoint(self.checkpoint_path,
                                             verbose=0, save_weights_only=True),
         ]
